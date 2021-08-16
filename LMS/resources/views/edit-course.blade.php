@@ -1,7 +1,10 @@
 @extends('layouts.authenticated-layout')
 
 @section('content')
-<div class="mx-5">
+<div class="main-container">
+  <div class="left-section ps-5 mx-5">
+    <h2>Edit Course</h2>
+    <p>Enter details:</>
     <form action="/update-course" method="post">
       <div class="mb-3">
         <label for="nameInput" class="form-label">Name</label>
@@ -28,4 +31,7 @@
       </div>
     </form>
   </div>
+  <div class="right-section">
+  </div>
+</div>
 @endsection

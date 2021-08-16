@@ -13,8 +13,8 @@ class CourseController extends Controller
         $paginate_count = 10;
         $query = Course::whereNotNull('name');
         
-        if(isset($request->name)){
-            $query = $query->where('name', 'like',"%{$request->name}%");
+        if(isset($request->code)){
+            $query = $query->where('code', 'like',"%{$request->code}%");
         }
 
         $courses = $query->paginate($paginate_count);
@@ -25,7 +25,7 @@ class CourseController extends Controller
         return view('view-courses')
                 ->with(['courses'=> $courses, 
                         'count_index' => $count_index,
-                        'name' => $request->name,
+                        'code' => $request->code,
                         'searched' => $request->searched
                     ]);
     }

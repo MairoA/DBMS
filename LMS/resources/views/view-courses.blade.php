@@ -10,9 +10,9 @@
               <p>Enter details:</>
               <form action="/courses" method="get">
                 <div class="mb-3 mt-5">
-                  <label for="nameInput" class="form-label">Name</label>
-                  <input name="name" type="text" class="form-control" id="nameInput" 
-                    value="{{ $name }}" placeholder="Enter Name">
+                  <label for="codeInput" class="form-label">Code</label>
+                  <input name="code" type="text" class="form-control" id="codeInput" 
+                    value="{{ $code }}" placeholder="Enter Code">
                 </div>
                 <input name="searched" type="hidden" value="true">
                 <div class="d-grid">

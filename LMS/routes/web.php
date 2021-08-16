@@ -14,45 +14,45 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', 'HomeController@index');
+Route::get('/home', 'HomeController@index');
 
-Route::get('/login', 'LoginController@index');
+Route::get('/login', 'LoginController@index')->middleware(['guest'])->name('login');
 Route::post('/login', 'LoginController@authenticate');
 
 Route::get('/logout', 'LoginController@logout');
 
-
+Route::get('/register', 'LoginController@register')->middleware(['guest']);
 Route::post('/register-lecturer', 'UserController@registerLecturer');
 Route::post('/register-student', 'UserController@registerStudent');
 
-Route::get('/lecturers', 'UserController@lecturerView');
-Route::get('/add-lecturer', 'UserController@addLecturerView');
-Route::get('/delete-lecturer/{id}', 'UserController@deleteLecturer');
-Route::get('/edit-lecturer/{id}', 'UserController@editLecturerView');
-Route::post('/update-lecturer', 'UserController@updateLecturer');
+Route::get('/add-student', 'UserController@addStudentView')->middleware(['guest']);
+Route::get('/add-lecturer', 'UserController@addLecturerView')->middleware(['guest']);
 
+Route::get('/forgot-password', 'ForgotPasswordController@index')->middleware(['guest']);
+Route::post('/reset-password', 'ForgotPasswordController@resetPassword')->middleware(['guest']);
 
-Route::get('/students', 'UserController@studentView');
-Route::get('/add-student', 'UserController@addStudentView');
-Route::get('/delete-student/{id}', 'UserController@deleteStudent');
-Route::get('/edit-student/{id}', 'UserController@editStudentView');
-Route::post('/update-student', 'UserController@updateStudent');
+Route::get('/lecturers', 'UserController@lecturerView')->middleware(['auth']);
+Route::get('/delete-lecturer/{id}', 'UserController@deleteLecturer')->middleware(['auth']);
+Route::get('/edit-lecturer/{id}', 'UserController@editLecturerView')->middleware(['auth']);
+Route::post('/update-lecturer', 'UserController@updateLecturer')->middleware(['auth']);
 
-Route::post('/register-course', 'CourseController@registerCourse');
-Route::get('/courses', 'CourseController@courseView');
-Route::get('/add-course', 'CourseController@addCourseView');
-Route::get('/delete-course/{id}', 'CourseController@deleteCourse');
-Route::get('/edit-course/{id}', 'CourseController@editCourseView');
-Route::post('/update-course', 'CourseController@updateCourse');
+Route::get('/students', 'UserController@studentView')->middleware(['auth']);
+Route::get('/delete-student/{id}', 'UserController@deleteStudent')->middleware(['auth']);
+Route::get('/edit-student/{id}', 'UserController@editStudentView')->middleware(['auth']);
+Route::post('/update-student', 'UserController@updateStudent')->middleware(['auth']);
 
-Route::get('/result-upload', 'ResultController@resultUploadView');
-Route::get('/view-results', 'ResultController@resultView');
-Route::post('/upload-report', 'ResultController@uploadResult');
+Route::post('/register-course', 'CourseController@registerCourse')->middleware(['auth']);
+Route::get('/courses', 'CourseController@courseView')->middleware(['auth']);
+Route::get('/add-course', 'CourseController@addCourseView')->middleware(['auth']);
+Route::get('/delete-course/{id}', 'CourseController@deleteCourse')->middleware(['auth']);
+Route::get('/edit-course/{id}', 'CourseController@editCourseView')->middleware(['auth']);
+Route::post('/update-course', 'CourseController@updateCourse')->middleware(['auth']);
 
-Route::get('/forgot-password', 'ForgotPasswordController@index');
-Route::post('/reset-password', 'ForgotPasswordController@resetPassword');
+Route::get('/result-upload', 'ResultController@resultUploadView')->middleware(['auth']);
+Route::get('/view-results', 'ResultController@resultView')->middleware(['auth']);
+Route::post('/upload-report', 'ResultController@uploadResult')->middleware(['auth']);
 
-Route::get('/register', 'LoginController@register');
-Route::get('/profile', 'UserController@profileView');
+Route::get('/profile', 'UserController@profileView')->middleware(['auth']);
 
-Route::post('/update-student-profile', 'UserController@studentProfileUpdate');
-Route::post('/update-lecturer-profile', 'UserController@lecturerProfileUpdate');
+Route::post('/update-student-profile', 'UserController@studentProfileUpdate')->middleware(['auth']);
+Route::post('/update-lecturer-profile', 'UserController@lecturerProfileUpdate')->middleware(['auth']);
