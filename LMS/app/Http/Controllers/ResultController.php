@@ -52,6 +52,25 @@ class ResultController extends Controller
 
     public function uploadResult(Request $request) 
     {
+        $upload_request = $request->except('_token');
+        //validate entries
+        $validateUpload = \Validator::make($upload_request, [
+            'upload-file' => 'bail|required|file|max:2050'
+        ]);
+
+        if ($validateUpload->fails()) {
+            return back()->withErrors($validateUpload)
+                        ->withInput();
+        }
+
+        $uploadedFileMimeType = $request->file('upload-file')->getMimeType();
+        $mimes = array('application/excel','application/vnd.ms-excel','application/vnd.msexcel');
+
+        if(in_array($uploadedFileMimeType, $mimes)) {
+            return back()->withErrors(['upload-file' => 'Invalid file format, please upload an excel file.'])
+                        ->withInput();    
+        }
+        
         $import = Excel::toArray(new ResultsImport, request()->file('upload-file'));
         $rows = $import[0];
 
@@ -64,7 +83,8 @@ class ResultController extends Controller
                 $validation_message = $validateSignup->errors()->first();
                 $error_message="Issue on row {$row_index}: {$validation_message}";
 
-                return back()->withErrors(['upload-file' => $error_message]);            
+                return back()->withErrors(['upload-file' => $error_message])
+                            ->withInput();            
             }
         }
 

@@ -35,9 +35,9 @@
             @endif
         </div>
         <div class="mb-3">
-            <label for="idNoInput" class="form-label">Reg No</label>
+            <label for="idNoInput" class="form-label">Matric No</label>
             <input name="id_no" type="text" class="form-control" id="idNoInput" 
-              value="{{ old('id_no') }}" placeholder="Enter Reg No" Required>
+              value="{{ old('id_no') }}" placeholder="Enter Matric No" Required>
             
             @if(isset($errors) && !is_null($errors->first('id_no')))
               <p class="text-danger">{{$errors->first('id_no')}}</p>

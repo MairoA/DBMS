@@ -134,11 +134,15 @@ return [
     | specify a specific custom language line for a given attribute rule.
     |
     */
-
+  
     'custom' => [
-        'attribute-name' => [
-            'rule-name' => 'custom-message',
+        'id_no' => [
+            'regex' => 'The Matric No is invalid.',
+            'numeric' => 'The Staff Id is invalid.'
         ],
+        'upload-file' => [
+            'max' => 'The uploaded file must not be greater than 2 megabytes'
+        ]
     ],
 
     /*

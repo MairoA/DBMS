@@ -63,5 +63,6 @@
                 $('.multiple-select').select2();
             });
         </script>
+        @yield('script')
     </body>
 </html>

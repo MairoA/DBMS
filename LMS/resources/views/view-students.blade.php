@@ -10,9 +10,9 @@
               <p>Enter details:</>
               <form action="/students" method="get">
                 <div class="mb-3 mt-5">
-                  <label for="matricNoInput" class="form-label">Reg No.</label>
+                  <label for="matricNoInput" class="form-label">Matric No.</label>
                   <input name="matric_no" type="text" class="form-control" id="matricNoInput" 
-                    value="{{ $matric_no }}" placeholder="Enter Reg No.">
+                    value="{{ $matric_no }}" placeholder="Enter Matric No.">
                 </div>
                 <input name="searched" type="hidden" value="true">
                 <div class="d-grid">
@@ -29,7 +29,7 @@
                 <tr>
                     <th scope="col">#</th>
                     <th scope="col">Name</th>
-                    <th scope="col">Reg No</th>
+                    <th scope="col">Matric No</th>
                     <th scope="col">Email</th>
                     <th scope="col">Edit</th>
                     <th scope="col">Delete</th>

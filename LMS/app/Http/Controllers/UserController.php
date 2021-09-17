@@ -43,11 +43,11 @@ class UserController extends Controller
         $create_request = $request->except('_token');
         //validate entries
         $validateSignup = \Validator::make($create_request, [
-            'first_name' => 'bail|required|max:100|min:3',
-            'last_name' => 'bail|required|max:100|min:3',
+            'first_name' => 'bail|required|max:100|min:3|regex:/^[a-zA-Z\s]+$/',
+            'last_name' => 'bail|required|max:100|min:3|regex:/^[a-zA-Z\s]+$/',
             'password' => 'bail|required|confirmed',
             'course' => 'bail|required|array|exists:courses,id',
-            'id_no' => 'bail|required|unique:users,id_no'
+            'id_no' => 'bail|required|unique:users,id_no|numeric'
         ]);
 
         if ($validateSignup->fails()) {
@@ -86,9 +86,9 @@ class UserController extends Controller
         $id = $request->lecturer_id;
         //validate entries
         $validateUpdate = \Validator::make($update_request, [
-            'first_name' => 'bail|required|max:100|min:3',
-            'last_name' => 'bail|required|max:100|min:3',
-            'id_no' => 'bail|required|unique:users,id_no,'.$id,
+            'first_name' => 'bail|required|max:100|min:3|regex:/^[a-zA-Z\s]+$/',
+            'last_name' => 'bail|required|max:100|min:3|regex:/^[a-zA-Z\s]+$/',
+            'id_no' => 'bail|required|unique:users,id_no,'.$id.'|numeric',
             'course' => 'bail|required|array|exists:courses,id'
         ]);
 
@@ -140,11 +140,11 @@ class UserController extends Controller
         $create_request = $request->except('_token');
         //validate entries
         $validateSignup = \Validator::make($create_request, [
-            'first_name' => 'bail|required|max:100|min:3',
-            'last_name' => 'bail|required|max:100|min:3',
+            'first_name' => 'bail|required|max:100|min:3|regex:/^[a-zA-Z\s]+$/',
+            'last_name' => 'bail|required|max:100|min:3|regex:/^[a-zA-Z\s]+$/',
             'email' => 'bail|required|email|max:100|unique:users,email',
             'password' => 'bail|required|confirmed',
-            'id_no' => 'bail|required|unique:users,id_no',
+            'id_no' => 'bail|required|unique:users,id_no|regex:/^LCU\/[\w]{2}\/[\d]{2}\/[\d]+$/',
             'sex' => 'bail|required|alpha',
             'year_of_entry' => 'bail|required|numeric',
             'course_of_entry' => 'bail|required',
@@ -185,10 +185,10 @@ class UserController extends Controller
 
         //validate entries
         $validateUpdate = \Validator::make($update_request, [
-            'first_name' => 'bail|required|max:100|min:3',
-            'last_name' => 'bail|required|max:100|min:3',
+            'first_name' => 'bail|required|max:100|min:3|regex:/^[a-zA-Z\s]+$/',
+            'last_name' => 'bail|required|max:100|min:3|regex:/^[a-zA-Z\s]+$/',
             'email' => 'bail|required|email|max:100|unique:users,email,'.$id,
-            'id_no' => 'bail|required|unique:users,id_no,'.$id,
+            'id_no' => 'bail|required|unique:users,id_no,'.$id.'|regex:/^LCU\/[\w]{2}\/[\d]{2}\/[\d]+$/',
             'sex' => 'bail|required|alpha',
             'year_of_entry' => 'bail|required|numeric',
             'course_of_entry' => 'bail|required',
@@ -235,8 +235,8 @@ class UserController extends Controller
 
         //validate entries
         $validateUpdate = \Validator::make($update_request, [
-            'first_name' => 'bail|required|max:100|min:3',
-            'last_name' => 'bail|required|max:100|min:3',
+            'first_name' => 'bail|required|max:100|min:3|regex:/^[a-zA-Z\s]+$/',
+            'last_name' => 'bail|required|max:100|min:3|regex:/^[a-zA-Z\s]+$/',
             'email' => 'bail|required|email|max:100|unique:users,email,'.$id,
             'sex' => 'bail|required|alpha',
             'year_of_entry' => 'bail|required|numeric',
@@ -268,8 +268,8 @@ class UserController extends Controller
         $id = $request->lecturer_id;
         //validate entries
         $validateUpdate = \Validator::make($update_request, [
-            'first_name' => 'bail|required|max:100|min:3',
-            'last_name' => 'bail|required|max:100|min:3',
+            'first_name' => 'bail|required|max:100|min:3|regex:/^[a-zA-Z\s]+$/',
+            'last_name' => 'bail|required|max:100|min:3|regex:/^[a-zA-Z\s]+$/',
             'course' => 'bail|required|array|exists:courses,id'
         ]);
 
